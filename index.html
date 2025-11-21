@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Site2ASCII</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            background: #000;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+        }
+        button {
+            padding: 10px 20px;
+            background: #00ff41;
+            color: #000;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .ascii-art {
+            display: inline-block;
+            text-align: left;
+            white-space: pre;
+            font-size: 6px;
+            line-height: 6px;
+            margin-top: 20px;
+        }
+        .error { color: red; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>SITE 2 ASCII</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="url" placeholder="google.com" value="{{ target_url|default:'' }}">
+        <button type="submit">Dönüştür</button>
+    </form>
+
+    {% if error_msg %}
+        <div class="error">{{ error_msg }}</div>
+    {% endif %}
+
+    {% if ascii_art %}
+        <div class="ascii-art">
+{{ ascii_art }}
+        </div>
+    {% endif %}
+</body>
+</html>
