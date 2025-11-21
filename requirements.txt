@@ -1,0 +1,5 @@
+django
+selenium
+pillow
+webdriver-manager
+gunicorn
